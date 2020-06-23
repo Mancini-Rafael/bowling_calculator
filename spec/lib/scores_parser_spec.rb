@@ -1,6 +1,5 @@
 require 'spec_helper'
 require_relative "../../lib/score_card_reader"
-require_relative "../../lib/scores_parser"
 
 describe ScoresParser do
   it "can be instantiated" do
