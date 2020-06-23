@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  calculator:
+    tty: true
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+    image: bowling_calculator
+    command: ./docker_entrypoint.sh
+    volumes:
+      - .:/calculator
+      - ./bundle_cache:/usr/local/bundle:rw,delegated

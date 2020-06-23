@@ -1,0 +1,7 @@
+FROM ruby:2.4
+
+ADD Gemfile* /calculator/
+WORKDIR /calculator
+ADD . /calculator
+
+ENTRYPOINT ["./docker_entrypoint.sh"]
