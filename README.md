@@ -1,8 +1,8 @@
 ## Bowling Calculator
 
 ### Dependencies
-- **docker:** 
-- **docker-compose:** 
+- **docker** 
+- **docker-compose** 
 
 ### Description
 - This project implements a bowling score calculator based on a specified score card template for a 10-pin
