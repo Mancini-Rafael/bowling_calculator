@@ -26,7 +26,7 @@ and prints in the console the calculated score information.
   docker-compose run calculator calc <RELATIVE_PATH_TO_FILE>
 ```
 - Please note that the score-file must be present in the project folder
-- Check the [```spec/examples/template.txt```](template.txt) for the specification of the score format
+- Check the [```spec/examples/valid/regular.txt```](regular.txt) for an example of the score format
 
 ### Testing
 - The test suite uses Rspec for unit testing and Rubocop for code quality:

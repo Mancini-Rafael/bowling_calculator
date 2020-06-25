@@ -10,10 +10,6 @@ echo "=== BUNDLING ==="
 bundle check || bundle install --jobs 20 --retry 5
 
 case "$COMMAND" in
-  calc_test)
-    echo "=== RUNNING PROGRAM USING TEST FILE ==="
-    ruby main.rb "spec/examples/template.txt"
-    ;;
   calc)
     echo "=== RUNNING CALCULATOR USING FILE PATH==="
     FILE_PATH="$2"
