@@ -22,13 +22,13 @@ describe ScoreCardReader do
     end
     context "when handling valid files" do
       it "does not raise error reading valid file" do
-        file_path = "#{RSPEC_ROOT}/examples/valid.txt"
+        file_path = "#{RSPEC_ROOT}/examples/valid/regular.txt"
         reader = ScoreCardReader.new(file_path: file_path)
         expect { reader.read }.not_to raise_error
       end
 
       it "returns structured file information" do
-        file_path = "#{RSPEC_ROOT}/examples/valid.txt"
+        file_path = "#{RSPEC_ROOT}/examples/valid/regular.txt"
         reader = ScoreCardReader.new(file_path: file_path)
         result = reader.read
         expect(result).to be_instance_of(Array)
