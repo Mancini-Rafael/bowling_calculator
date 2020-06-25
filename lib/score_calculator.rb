@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ScoreCalculator
-  def initialize(scores:{})
+  def initialize(scores: {})
     @scores = scores
   end
 
@@ -12,21 +14,18 @@ class ScoreCalculator
         if is_10th_frame?(frame_info)
           # score = Points for this frame
           score = frame_info.last[:scores].sum
-          @scores[player][frame_info.first].merge!(running_total: previous_score + score)
         elsif frame_is_strike?(frame_info)
           # score = Points for this frame + Next two rolls (if next roll is also a strike it counts as a single roll)
           additional_score = calculate_additional_score(frames_info, index)
           score = regular_frame_sum(frame_info) + additional_score
-          @scores[player][frame_info.first].merge!(running_total: previous_score + score)
         elsif frame_is_spare?(frame_info)
           # score = Points for this frame + First roll of next frame
           score = regular_frame_sum(frame_info) + frames_info[index + 1].last[:scores].first
-          @scores[player][frame_info.first].merge!(running_total: previous_score + score)
         else
           # score = Points for this frame
           score = regular_frame_sum(frame_info)
-          @scores[player][frame_info.first].merge!(running_total: previous_score + score)
         end
+        @scores[player][frame_info.first].merge!(running_total: previous_score + score)
       end
     end
     @scores
@@ -35,15 +34,15 @@ class ScoreCalculator
   private
 
   def is_10th_frame?(frame_info)
-    frame_info.first == "frame_10"
+    frame_info.first == 'frame_10'
   end
 
   def frame_is_strike?(frame_info)
-    frame_info.last[:pinfalls].include?("X")
+    frame_info.last[:pinfalls].include?('X')
   end
 
   def frame_is_spare?(frame_info)
-    frame_info.last[:pinfalls].include?("/")
+    frame_info.last[:pinfalls].include?('/')
   end
 
   def regular_frame_sum(frame_info)

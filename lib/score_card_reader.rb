@@ -1,23 +1,23 @@
+# frozen_string_literal: true
+
 class ScoreCardReader
-  def initialize(file_path:nil)
+  def initialize(file_path: nil)
     @file_path = file_path
   end
 
   def read
-    if file_is_valid?
-      begin
-        # foreach is important to keep scalability
-        data = []
-        File.foreach(@file_path) do |line|
-          player, score = line.split(" ")
-          data << { player: player, score: score }
-        end
-        return data
-      rescue
-        raise "Error reading file"
+    raise 'File is not valid' unless file_is_valid?
+
+    begin
+      # foreach is important to keep scalability
+      data = []
+      File.foreach(@file_path) do |line|
+        player, score = line.split(' ')
+        data << { player: player, score: score }
       end
-    else
-      raise "File is not valid"
+      data
+    rescue StandardError
+      raise 'Error reading file'
     end
   end
 
@@ -25,6 +25,7 @@ class ScoreCardReader
 
   def file_is_valid?
     return false if !File.file?(@file_path) || File.zero?(@file_path)
+
     true
   end
 end
