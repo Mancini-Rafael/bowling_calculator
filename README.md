@@ -1,3 +1,4 @@
+[![CircleCI](https://circleci.com/gh/Mancini-Rafael/bowling_calculator.svg?style=shield)](https://circleci.com/gh/Mancini-Rafael/bowling_calculator)
 ## Bowling Calculator
 
 ### Dependencies
