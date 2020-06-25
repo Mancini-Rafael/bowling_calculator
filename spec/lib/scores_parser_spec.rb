@@ -21,6 +21,11 @@ describe ScoresParser do
         parser = ScoresParser.new(scores: fake_scores)
         expect { parser.parse }.to raise_error(RuntimeError, "Invalid sum of scores for player Jeff on frame 1")
       end
+      it "raises errors for too many frames" do
+        fake_scores = Array.new(30, { player: "Jeff", score: "X" })
+        parser = ScoresParser.new(scores: fake_scores)
+        expect { parser.parse }.to raise_error(RuntimeError, "Too many frames for Jeff")
+      end
     end
     context "when handling valid data" do
       it "returns structured score information" do

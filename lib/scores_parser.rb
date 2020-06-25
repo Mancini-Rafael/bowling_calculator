@@ -6,7 +6,16 @@ class ScoresParser
   def parse
     @formatted_scores = {}
     # Replace invalid scores and fouls for 0
-    evaluate_score = lambda { |el| el[:score].to_i.negative? ? el.merge!(value: 0) : el.merge!(value: el[:score].to_i) }
+    evaluate_score = lambda do |el|
+      case el[:score]
+      when "X"
+        el.merge!(value: 10)
+      when "F"
+        el.merge!(value: 0)
+      else
+        el[:score].to_i.negative? ? el.merge!(value: 0) : el.merge!(value: el[:score].to_i)
+      end
+    end
     @scores.each(&evaluate_score)
     # Split scores by players
     @scores = @scores.group_by{ |el| el[:player] }
@@ -33,6 +42,7 @@ class ScoresParser
       current_frame = 0
       number_of_frames = 0
       while current_frame < player_scores.count
+        raise "Too many frames for #{@player}" if number_of_frames > 10
         current_score_value = player_scores[current_frame][:value]
         current_score = player_scores[current_frame][:score]
         next_score_value = player_scores&.[](current_frame+1)&.dig(:value).to_i
